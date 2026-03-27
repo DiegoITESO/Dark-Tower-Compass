@@ -1,3 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+@theme {
+  --color-background: hsl(0 0% 6%);
+  --color-foreground: hsl(40 20% 85%);
+  --color-crimson: hsl(0 70% 45%);
+  
+  --text-shadow-glow: 0 0 20px hsl(0 70% 45% / 0.4);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+}
