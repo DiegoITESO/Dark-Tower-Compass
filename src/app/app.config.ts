@@ -1,12 +1,13 @@
+//------ Imports ------//
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 
-
 import { routes } from './app.routes';
 
+//------ Configuration for Firebase ------//
 const firebaseConfig = {
 
   apiKey: "AIzaSyA8FHpMHw0HWw5Gt4QmnVX1nWUaWtN0XNE",
@@ -23,7 +24,7 @@ const firebaseConfig = {
 
 };
 
-
+//------ Configuration for App ------//
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),

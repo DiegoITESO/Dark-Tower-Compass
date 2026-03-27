@@ -1,45 +1,42 @@
+//-------- Imports --------//
 import { Routes } from '@angular/router';
 
+//-------- Route Definitions --------//
 export const routes: Routes = [
-  // ==========================================
-  // RUTAS PÚBLICAS (Accesibles para todos)
-  // ==========================================
+
+  //-------- Public Routes --------//
   {
     path: 'home',
-    loadComponent: () => import('./features/home/home.component').then(m => m.HomeComponent)
+    loadComponent: () => import('./features/home/home').then(m => m.Home)
   },
   {
     path: 'characters',
-    loadComponent: () => import('./features/characters/characters.component').then(m => m.CharactersComponent)
+    loadComponent: () => import('./features/characters/characters').then(m => m.Characters)
   },
   {
     path: 'map',
-    loadComponent: () => import('./features/map/map.component').then(m => m.MapComponent)
+    loadComponent: () => import('./features/map/map').then(m => m.Map)
   },
   {
     path: 'events',
-    loadComponent: () => import('./features/events/events.component').then(m => m.EventsComponent)
+    loadComponent: () => import('./features/events/events').then(m => m.Events)
   },
   {
     path: 'auth',
-    loadComponent: () => import('./features/auth/auth.component').then(m => m.AuthComponent)
+    loadComponent: () => import('./features/auth/auth').then(m => m.Auth)
   },
 
-  // ==========================================
-  // RUTAS PRIVADAS (Requieren inicio de sesión)
-  // ==========================================
+  //-------- Private Routes --------//
   {
     path: 'profile',
-    loadComponent: () => import('./features/library-id/library-id.component').then(m => m.LibraryIdComponent),
+    loadComponent: () => import('./features/library-id/library-id').then(m => m.LibraryId),
   },
   {
     path: 'quiz',
-    loadComponent: () => import('./features/quiz/quiz.component').then(m => m.QuizComponent),
+    loadComponent: () => import('./features/quiz/quiz').then(m => m.Quiz),
   },
 
-  // ==========================================
-  // REDIRECCIONES POR DEFECTO
-  // ==========================================
+  //-------- Default Redirects --------//
   { 
     path: '', 
     redirectTo: 'home', 
