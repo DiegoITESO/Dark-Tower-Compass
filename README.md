@@ -1,3 +1,15 @@
+## Project Description
+
+**Dark Tower Compass** is a modern web application developed as part of the **Client-Side Development**  course at **ITESO**. This project focuses on building a responsive, high-performance user interface using the latest features of the Angular ecosystem.
+
+## Tech Stack
+
+This project leverages cutting-edge tools to ensure a fast development workflow and optimized production builds:
+
+* **Framework:** [Angular](https://angular.dev/) v21.2.3
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/) v4.2.2 
+* **Language:** TypeScript 5.9.3.
+
 # DarkTowerCompassDiego
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.3.
