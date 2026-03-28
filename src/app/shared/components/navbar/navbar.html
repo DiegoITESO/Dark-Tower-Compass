@@ -1,1 +1,52 @@
-<p>navbar works!</p>
+<nav
+  class="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-md"
+>
+  <div class="container mx-auto flex h-16 items-center justify-between px-4">
+    <a class="font-display text-xl font-bold tracking-wider text-accent" href="/"
+      >Dark Tower Compass</a
+    >
+    <div class="hidden md:flex items-center gap-6">
+      <a
+        class="font-display text-sm tracking-wide transition-colors hover:text-accent text-muted-foreground"
+        href="/characters"
+        >Personajes</a
+      ><a
+        class="font-display text-sm tracking-wide transition-colors hover:text-accent text-muted-foreground"
+        href="/map"
+        >Lugares</a
+      ><a
+        class="font-display text-sm tracking-wide transition-colors hover:text-accent text-muted-foreground"
+        href="/events"
+        >Eventos</a
+      ><a
+        class="font-display text-sm tracking-wide transition-colors hover:text-accent text-muted-foreground"
+        href="/quiz"
+        >Cuestionario</a
+      ><a href="/auth"
+        ><button
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-9 rounded-md px-3 font-display text-xs"
+        >
+          Iniciar Sesión
+        </button></a
+      >
+    </div>
+    <button class="md:hidden text-foreground">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-menu"
+      >
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+    </button>
+  </div>
+</nav>
