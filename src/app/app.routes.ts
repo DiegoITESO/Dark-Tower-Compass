@@ -3,47 +3,46 @@ import { Routes } from '@angular/router';
 
 //-------- Route Definitions --------//
 export const routes: Routes = [
-
   //-------- Public Routes --------//
   {
     path: 'home',
-    loadComponent: () => import('./features/home/home').then(m => m.Home)
+    loadComponent: () => import('./features/home/home').then((m) => m.Home),
   },
   {
     path: 'characters',
-    loadComponent: () => import('./features/characters/characters').then(m => m.Characters)
+    loadComponent: () => import('./features/characters/characters').then((m) => m.Characters),
   },
   {
     path: 'map',
-    loadComponent: () => import('./features/map/map').then(m => m.Map)
+    loadComponent: () => import('./features/map/map').then((m) => m.Map),
   },
   {
     path: 'events',
-    loadComponent: () => import('./features/events/events').then(m => m.Events)
+    loadComponent: () => import('./features/events/events').then((m) => m.Events),
   },
   {
     path: 'auth',
-    loadComponent: () => import('./features/auth/auth').then(m => m.Auth)
+    loadComponent: () => import('./features/auth/auth').then((m) => m.Auth),
   },
 
   //-------- Private Routes --------//
   {
     path: 'profile',
-    loadComponent: () => import('./features/library-id/library-id').then(m => m.LibraryId),
+    loadComponent: () => import('./features/library-id/library-id').then((m) => m.LibraryId),
   },
   {
     path: 'quiz',
-    loadComponent: () => import('./features/quiz/quiz').then(m => m.Quiz),
+    loadComponent: () => import('./features/quiz/quiz').then((m) => m.Quiz),
   },
 
   //-------- Default Redirects --------//
-  { 
-    path: '', 
-    redirectTo: 'home', 
-    pathMatch: 'full' 
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
-  { 
-    path: '**', 
-    redirectTo: 'home' 
-  }
+  {
+    path: '**',
+    redirectTo: 'home',
+  },
 ];

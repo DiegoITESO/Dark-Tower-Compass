@@ -9,19 +9,17 @@ import { routes } from './app.routes';
 
 //------ Configuration for Firebase ------//
 const firebaseConfig = {
+  apiKey: 'AIzaSyA8FHpMHw0HWw5Gt4QmnVX1nWUaWtN0XNE',
 
-  apiKey: "AIzaSyA8FHpMHw0HWw5Gt4QmnVX1nWUaWtN0XNE",
+  authDomain: 'dark-tower-compass.firebaseapp.com',
 
-  authDomain: "dark-tower-compass.firebaseapp.com",
+  projectId: 'dark-tower-compass',
 
-  projectId: "dark-tower-compass",
+  storageBucket: 'dark-tower-compass.firebasestorage.app',
 
-  storageBucket: "dark-tower-compass.firebasestorage.app",
+  messagingSenderId: '527864079727',
 
-  messagingSenderId: "527864079727",
-
-  appId: "1:527864079727:web:afa6bb2a391e5af086349a"
-
+  appId: '1:527864079727:web:afa6bb2a391e5af086349a',
 };
 
 //------ Configuration for App ------//
@@ -32,5 +30,5 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
-  ]
+  ],
 };
