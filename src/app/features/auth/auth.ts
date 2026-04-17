@@ -2,14 +2,12 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Auth as AuthService } from '../../core/services/auth';
-import { fadeInSlideUp } from '../../shared/animations/fade-in.animations'
 
 //------ Injectable decorator ------//
 @Component({
   selector: 'app-auth', // HTML tag
   standalone: true,
   imports: [ FormsModule ], // so we can use ngModel for the email an password
-  animations: [ fadeInSlideUp ],
   templateUrl: './auth.html',
   styleUrl: './auth.css',
 })
