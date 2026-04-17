@@ -1,3 +1,4 @@
+//------ Imports ------//
 import { Injectable, inject, signal } from '@angular/core';
 import { 
   Auth as FirebaseAuth, 
@@ -9,17 +10,19 @@ import {
  } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
+//------ Injectable decorator ------//
 @Injectable({
   providedIn: 'root',
 })
+//------ Service Auth ------//
 export class Auth {
-  private auth = inject(FirebaseAuth);
-  private router = inject(Router);
+  private auth = inject(FirebaseAuth); // to manage login
+  private router = inject(Router);     // to redirect users when they log out
 
   userSignal = signal<User | null | undefined>(undefined);
 
   constructor() {
-    user(this.auth).subscribe((user) => {
+    user(this.auth).subscribe((user) => { // turn the observable into a signal
       this.userSignal.set(user);
     });
   }

@@ -1,5 +1,7 @@
+//-------- Imports --------//
 import { trigger, transition, style, animate } from '@angular/animations';
 
+//-------- Fade-in Animation --------//
 export const fadeInSlideUp = trigger('fadeInSlideUp', [
   transition(':enter', [
     style({ opacity: 0, transform: 'translateY(20px)' }),
