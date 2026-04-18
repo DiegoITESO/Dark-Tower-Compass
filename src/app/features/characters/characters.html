@@ -1,1 +1,10 @@
-<p>characters works!</p>
+<br><br><br>
+@if (characters().length === 0) {
+    <p>Characters list is empty</p>
+}
+
+<div class="characters-list">
+  @for (character of characters(); track $index) {
+    <app-characters-card [character]="character"></app-characters-card>
+  }
+</div>
