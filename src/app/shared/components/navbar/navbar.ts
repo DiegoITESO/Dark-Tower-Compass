@@ -1,11 +1,16 @@
 //------ Imports ------//
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Auth as AuthService } from '../../../core/services/auth';
+import { RouterLink } from '@angular/router';
 
 //------ Component declaration ------//
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  standalone: true,
+  imports: [RouterLink],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
-export class Navbar {}
+export class Navbar {
+  protected authService = inject(AuthService);
+}

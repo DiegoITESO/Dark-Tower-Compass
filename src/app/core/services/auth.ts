@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
  } from '@angular/fire/auth';
+import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
 //------ Injectable decorator ------//
@@ -18,6 +19,7 @@ import { Router } from '@angular/router';
 export class Auth {
   private auth = inject(FirebaseAuth); // to manage login
   private router = inject(Router);     // to redirect users when they log out
+  private firestore = inject(Firestore); // to manage user data in Firestore
 
   userSignal = signal<User | null | undefined>(undefined);
 
@@ -30,6 +32,19 @@ export class Auth {
   async register(email: string, pass: string) {
     try {
       const credential = await createUserWithEmailAndPassword(this.auth, email, pass);
+      const user = credential.user;
+
+      const userDocRef = doc(this.firestore, `users/${user.uid}`);
+
+      await setDoc(userDocRef, {
+        assignedCharacterId: "",
+        birthDate: "",
+        displayName: "", 
+        favoriteBook: "",
+        hasCompletedQuiz: false,
+        email: user.email,
+        role: 'user'
+      });
       return credential;
     } catch (error) {
       throw error;
