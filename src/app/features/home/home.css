@@ -1,0 +1,7 @@
+/* home.component.css */
+.king-title-hero {
+  font-family: var(--font-display), serif; /* Usamos la variable que definiste en el global */
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}

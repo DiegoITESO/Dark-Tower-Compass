@@ -2,39 +2,32 @@
   <img
     src="hero-dark-tower.jpg"
     alt="The Dark Tower"
-    class="absolute inset-0 w-full h-full object-cover opacity-40"
+    class="absolute inset-0 w-full h-full object-cover opacity-30 scale-110 transition-transform duration-[10s] hover:scale-100"
   />
-  <div
-    class="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background"
-  ></div>
-  <div class="relative text-center px-4 max-w-3xl" style="opacity: 1; transform: none">
+
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background"></div>
+
+  <div class="relative text-center px-4 max-w-3xl animate-fade-in-slide-up">
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="48"
-      height="48"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="lucide lucide-compass mx-auto mb-6 text-accent animate-pulse-glow"
+      class="mx-auto mb-6 text-accent w-12 h-12 drop-shadow-[0_0_10px_rgba(185,28,28,0.8)]"
+      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
     >
-      <path
-        d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"
-      ></path>
       <circle cx="12" cy="12" r="10"></circle>
+      <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path>
     </svg>
-    <h1 class="font-display text-5xl md:text-7xl font-bold tracking-wider text-glow mb-4">
+
+    <h1 class="king-title-hero text-5xl md:text-7xl text-glow">
       Dark Tower Compass
     </h1>
-    <p class="text-lg md:text-xl text-muted-foreground font-body italic leading-relaxed">
+
+    <p class="text-lg md:text-xl text-foreground/80 font-serif italic leading-relaxed">
       "El hombre de negro huyó a través del desierto, y el pistolero lo siguió."
     </p>
-    <p class="mt-4 text-sm text-muted-foreground">Tu guía al universo de Stephen King</p>
   </div>
 </section>
-<div class="p-10 grid grid-cols-1 md:grid-cols-3 gap-6 bg-slate-950 min-h-screen">
+
+<div class="px-6 py-20 grid grid-cols-1 md:grid-cols-3 gap-8 bg-background">
   <app-character-card
     [name]="'Personajes'"
     [role]="'Pistolero'"
