@@ -1,12 +1,12 @@
-<div class="min-h-screen pt-24 pb-16 flex items-center justify-center bg-slate-950">
+<div class="min-h-screen pt-24 pb-16 flex items-center justify-center bg-background-950">
     <div class="animate-fade-in-slide-up w-full max-w-md mx-4">
-    
+
     <div class="bg-card border border-border rounded-lg p-8 border-glow shadow-2xl">
-        
+
         <h1 class="font-display text-3xl font-bold tracking-wider text-glow text-center mb-2 text-white">
         {{ isLogin() ? "Bienvenido" : "Únete" }}
         </h1>
-        
+
         <p class="text-center text-muted-foreground text-sm mb-8 italic text-slate-400">
         {{ isLogin() ? "Ingresa a la biblioteca de Derry" : "Obtén tu Derry Library ID" }}
         </p>
@@ -21,14 +21,14 @@
             required
             email
             #emailInput="ngModel"
-            class="w-full bg-slate-900 border border-slate-800 rounded px-4 py-2 text-white focus:outline-none focus:border-red-600 transition-colors font-body"
+            class="w-full bg-background-900 border border-slate-800 rounded px-4 py-2 text-white focus:outline-none focus:border-red-600 transition-colors font-body"
             [class.border-red-500]="emailInput.invalid && emailInput.touched"
             />
             @if (emailInput.invalid && emailInput.touched) {
                 <p class="text-red-500 text-xs mt-1 ml-1">Debe ingresar un correo electrónico válido.</p>
                 }
         </div>
-        
+
         <div>
             <input
             type="password"
@@ -38,14 +38,14 @@
             required
             minlength="6"
             #passwordInput="ngModel"
-            class="w-full bg-slate-900 border border-slate-800 rounded px-4 py-2 text-white focus:outline-none focus:border-red-600 transition-colors font-body"
+            class="w-full bg-background-900 border border-slate-800 rounded px-4 py-2 text-white focus:outline-none focus:border-red-600 transition-colors font-body"
             [class.border-red-500]="passwordInput.invalid && passwordInput.touched"
             />
             @if (passwordInput.invalid && passwordInput.touched) {
                 <p class="text-red-500 text-xs mt-1 ml-1">La contraseña debe tener al menos 6 caracteres.</p>
                 }
         </div>
-    
+
     @if (!isLogin()) {
         <div>
         <input
@@ -56,7 +56,7 @@
             required
             minlength="6"
             #confirmPasswordInput="ngModel"
-            class="w-full bg-slate-900 border border-slate-800 rounded px-4 py-2 text-white focus:outline-none focus:border-red-600 transition-colors font-body"
+            class="w-full bg-background-900 border border-slate-800 rounded px-4 py-2 text-white focus:outline-none focus:border-red-600 transition-colors font-body"
             [class.border-red-500]="(confirmPasswordInput.invalid || password !== confirmPassword) && confirmPasswordInput.touched"
         />
         @if (confirmPasswordInput.touched && password !== confirmPassword) {
@@ -65,8 +65,8 @@
         </div>
     }
 
-        <button 
-            type="submit" 
+        <button
+            type="submit"
             [disabled]="loading() || authForm.invalid"
             class="w-full bg-red-700 hover:bg-red-600 text-white font-display tracking-wide py-2 rounded transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
@@ -80,7 +80,7 @@
         >
         {{ isLogin() ? "¿No tienes cuenta? Regístrate" : "¿Ya tienes cuenta? Inicia sesión" }}
         </button>
-        
+
     </div>
     </div>
     @if (errorMessage()) {
@@ -90,7 +90,7 @@
             <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
         </svg>
         </div>
-        
+
         <div class="ms-3 text-sm font-medium">
         {{ errorMessage() }}
         </div>
