@@ -20,7 +20,7 @@ export class Characters implements OnInit {
   }
 
   getCharacters() {
-    this.characterService.getCharacters().subscribe(response => {
+    this.characterService.getCharacters().subscribe((response) => {
       this.characters.set(response);
     });
   }

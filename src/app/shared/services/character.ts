@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CharacterService {
-  constructor(private firestore: Firestore) {} 
+  constructor(private firestore: Firestore) {}
 
   getCharacters(): Observable<ICharacter[]> {
     const charactersRef = collection(this.firestore, 'characters');

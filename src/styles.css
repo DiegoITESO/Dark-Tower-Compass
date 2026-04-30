@@ -8,10 +8,11 @@
   --color-crimson: hsl(0 70% 45%);
   --color-accent: hsl(40 95% 45%);
   --text-shadow-glow: 0 0 20px hsl(0 70% 45% / 0.4);
-  --shadow-glow: 0 0 20px hsl(0 70% 45% / 0.6);
+  --shadow-glow-inactive: 0 0 10px hsl(0 70% 45% / 0.2);
+  --shadow-glow-active: 0 0 25px hsl(0 70% 45% / 0.6);
   --animate-fade-in-slide-up: fade-in-slide-up 500ms ease-out forwards;
-  --font-display: "Cinzel", serif;
-  --font-body: "Crimson Text", serif;
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Crimson Text', serif;
 
   @keyframes fade-in-slide-up {
     0% {
@@ -29,11 +30,16 @@
   body {
     @apply bg-background text-foreground antialiased;
   }
-  h1, h2, h3, h4, .font-trajan {
+  h1,
+  h2,
+  .font-trajan {
     @apply font-display tracking-widest uppercase;
   }
   p {
     @apply text-foreground/80 leading-relaxed;
+  }
+  .text-muted-display {
+    @apply font-display text-[0.75rem] text-foreground/60 tracking-wide;
   }
 }
 

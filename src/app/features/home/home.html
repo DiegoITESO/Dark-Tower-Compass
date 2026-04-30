@@ -1,25 +1,32 @@
-<section class="relative h-[85vh] flex items-center justify-center overflow-hidden">
+<section class="relative h-[65vh] flex items-center justify-center overflow-hidden">
   <img
     src="hero-dark-tower.jpg"
     alt="The Dark Tower"
     class="absolute inset-0 w-full h-full object-cover opacity-30 scale-110 transition-transform duration-[10s] hover:scale-100"
   />
 
-  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background"></div>
+  <div
+    class="absolute inset-0 bg-gradient-to-b from-transparent via-background/40 to-background"
+  ></div>
 
   <div class="relative text-center px-4 max-w-3xl animate-fade-in-slide-up">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       class="mx-auto mb-6 text-accent w-12 h-12 drop-shadow-[0_0_10px_rgba(185,28,28,0.8)]"
-      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     >
       <circle cx="12" cy="12" r="10"></circle>
-      <path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"></path>
+      <path
+        d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"
+      ></path>
     </svg>
 
-    <h1 class="king-title-hero text-5xl md:text-7xl text-glow">
-      Dark Tower Compass
-    </h1>
+    <h1 class="king-title-hero text-5xl md:text-7xl text-glow">Dark Tower Compass</h1>
 
     <p class="text-lg md:text-xl text-foreground/80 font-serif italic leading-relaxed">
       "El hombre de negro huyó a través del desierto, y el pistolero lo siguió."
@@ -27,20 +34,75 @@
   </div>
 </section>
 
-<div class="px-6 py-20 grid grid-cols-1 md:grid-cols-3 gap-8 bg-background">
-  <app-character-card
-    [name]="'Personajes'"
-    [role]="'Pistolero'"
-    [description]="''"
-    [imageUrl]="'https://upload.wikimedia.org/wikipedia/en/2/22/Roland_Deschain.jpg'"
-  >
-  </app-character-card>
+<div class="px-6 pt-8 pb-20 grid grid-cols-1 md:grid-cols-3 gap-8 bg-background">
+  <app-card-ui>
+    <a href="/characters">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-users mb-4 text-accent transition-transform group-hover:scale-110"
+      >
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+        <circle cx="9" cy="7" r="4"></circle>
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+      </svg>
+      <h3 class="font-display text-lg font-semibold tracking-wide mb-2">Personajes</h3>
+      <span class="text-muted-display">Los habitantes del universo de King</span>
+    </a>
+  </app-card-ui>
 
-  <app-character-card
-    [name]="'Mapa'"
-    [role]="'Hechicero'"
-    [description]="''"
-    [imageUrl]="'https://example.com/imagen-de-flagg.jpg'"
-  >
-  </app-character-card>
+  <app-card-ui>
+    <a href="/map">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-map-pin mb-4 text-accent transition-transform group-hover:scale-110"
+      >
+        <path
+          d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+        ></path>
+        <circle cx="12" cy="10" r="3"></circle>
+      </svg>
+
+      <h3 class="font-display text-lg font-semibold tracking-wide mb-2">Mapa</h3>
+      <span class="text-muted-display">Derry, Castle rock y más</span>
+    </a>
+  </app-card-ui>
+
+  <app-card-ui>
+    <a href="/events">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-clock mb-4 text-accent transition-transform group-hover:scale-110"
+      >
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+      <h3 class="font-display text-lg font-semibold tracking-wide mb-2">Eventos</h3>
+      <span class="text-muted-display">Los momentos que definieron</span>
+    </a>
+  </app-card-ui>
 </div>

@@ -9,5 +9,11 @@ import { CharacterService } from '../../../shared/services/character';
   styleUrl: './characters-card.css',
 })
 export class CharactersCard {
-  @Input() character: ICharacter = { id: "", name: "", description: "", originBook: "", mainLocationId: ""}
+  @Input() character: ICharacter = {
+    id: '',
+    name: '',
+    description: '',
+    originBook: '',
+    mainLocationId: '',
+  };
 }

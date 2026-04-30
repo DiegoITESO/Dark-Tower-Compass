@@ -1,13 +1,13 @@
 //------ Imports ------//
 import { Injectable, inject, signal } from '@angular/core';
-import { 
-  Auth as FirebaseAuth, 
-  user, 
+import {
+  Auth as FirebaseAuth,
+  user,
   User,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
- } from '@angular/fire/auth';
+} from '@angular/fire/auth';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 
@@ -18,13 +18,14 @@ import { Router } from '@angular/router';
 //------ Service Auth ------//
 export class Auth {
   private auth = inject(FirebaseAuth); // to manage login
-  private router = inject(Router);     // to redirect users when they log out
+  private router = inject(Router); // to redirect users when they log out
   private firestore = inject(Firestore); // to manage user data in Firestore
 
   userSignal = signal<User | null | undefined>(undefined);
 
   constructor() {
-    user(this.auth).subscribe((user) => { // turn the observable into a signal
+    user(this.auth).subscribe((user) => {
+      // turn the observable into a signal
       this.userSignal.set(user);
     });
   }
@@ -37,13 +38,13 @@ export class Auth {
       const userDocRef = doc(this.firestore, `users/${user.uid}`);
 
       await setDoc(userDocRef, {
-        assignedCharacterId: "",
-        birthDate: "",
-        displayName: "", 
-        favoriteBook: "",
+        assignedCharacterId: '',
+        birthDate: '',
+        displayName: '',
+        favoriteBook: '',
         hasCompletedQuiz: false,
         email: user.email,
-        role: 'user'
+        role: 'user',
       });
       return credential;
     } catch (error) {
