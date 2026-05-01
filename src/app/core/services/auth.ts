@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 //------ Service Auth ------//
-export class Auth {
+export class AuthService {
   private auth = inject(FirebaseAuth); // to manage login
   private router = inject(Router); // to redirect users when they log out
   private firestore = inject(Firestore); // to manage user data in Firestore

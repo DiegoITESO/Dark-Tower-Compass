@@ -1,7 +1,7 @@
 //------ Imports ------//
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Auth as AuthService } from '../../core/services/auth';
+import { AuthService } from '../../core/services/auth';
 import { Router } from '@angular/router';
 
 //------ Injectable decorator ------//

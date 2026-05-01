@@ -1,5 +1,7 @@
 //-------- Imports --------//
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth-guard';
+import { noAuthGuard } from './guards/no-auth-guard';
 
 //-------- Route Definitions --------//
 export const routes: Routes = [
@@ -23,16 +25,19 @@ export const routes: Routes = [
   {
     path: 'auth',
     loadComponent: () => import('./features/auth/auth').then((m) => m.Auth),
+    canActivate: [noAuthGuard]
   },
 
   //-------- Private Routes --------//
   {
     path: 'profile',
     loadComponent: () => import('./features/library-id/library-id').then((m) => m.LibraryId),
+    canActivate: [authGuard]
   },
   {
     path: 'quiz',
     loadComponent: () => import('./features/quiz/quiz').then((m) => m.Quiz),
+    canActivate: [authGuard]
   },
 
   //-------- Default Redirects --------//

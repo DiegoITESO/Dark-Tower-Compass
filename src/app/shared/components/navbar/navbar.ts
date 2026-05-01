@@ -1,6 +1,6 @@
 //------ Imports ------//
 import { Component, inject } from '@angular/core';
-import { Auth as AuthService } from '../../../core/services/auth';
+import { AuthService } from '../../../core/services/auth';
 import { RouterLink } from '@angular/router';
 
 //------ Component declaration ------//
