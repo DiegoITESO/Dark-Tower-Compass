@@ -1,0 +1,86 @@
+/* TODO: standarize to tailwind classes */
+.credential {
+  width: 350px;
+  border: 2px solid #a52a2a;
+  border-radius: 10px;
+  background-color: #f88423;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.credential-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.credential-logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.credential-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.credential-body {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.credential-photo {
+  width: 100px;
+  height: 120px;
+  object-fit: cover;
+  margin-right: 20px;
+  border: 1px solid #ccc;
+}
+
+.credential-info {
+  flex: 1;
+}
+
+.credential-name,
+.credential-dob,
+.credential-favorite-book {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.credential-input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background-color: transparent;
+  font-size: 16px;
+  color: #333;
+  padding: 5px 0;
+}
+
+.credential-footer {
+  text-align: right;
+}
+
+.credential-signature-label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.credential-signature {
+  width: 100px;
+  height: auto;
+}
+.credential::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px dashed #a52a2a;
+  border-radius: 15px;
+}
