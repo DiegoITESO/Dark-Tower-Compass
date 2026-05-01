@@ -1,8 +1,10 @@
+//------ Imports ------//
 import { Component, inject } from '@angular/core';
 import { Character as CharacterService } from '../../core/services/character';
 import { CommonModule } from '@angular/common';
 import { CharactersCard } from './characters-card/characters-card';
 
+//------ Component declaration ------//
 @Component({
   selector: 'app-characters',
   imports: [CommonModule, CharactersCard],

@@ -1,1 +1,10 @@
-<p>events works!</p>
+<br /><br /><br />
+@if (events().length === 0) {
+  <p>Event list is empty</p>
+}
+
+<div class="events-list">
+  @for (event of events(); track $index) {
+    <app-events-card [event]="event"></app-events-card>
+  }
+</div>
