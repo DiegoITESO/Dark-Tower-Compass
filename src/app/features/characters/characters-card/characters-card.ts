@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Character as ICharacter } from '../../../shared/types/character';
-import { CharacterService } from '../../../shared/services/character';
+import { Component, input } from '@angular/core';
+import { Character as ICharacter } from '../../../core/models/character.model';
 
 @Component({
   selector: 'app-characters-card',
@@ -9,11 +8,5 @@ import { CharacterService } from '../../../shared/services/character';
   styleUrl: './characters-card.css',
 })
 export class CharactersCard {
-  @Input() character: ICharacter = {
-    id: '',
-    name: '',
-    description: '',
-    originBook: '',
-    mainLocationId: '',
-  };
+  character = input.required<ICharacter>();
 }
