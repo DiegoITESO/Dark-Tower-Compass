@@ -1,0 +1,22 @@
+<app-card-ui>
+  <div class="card-accent"></div>
+
+  <div class="card-image">
+    <span class="card-initial">{{ event().name.charAt(0).toUpperCase() }}</span>
+  </div>
+
+  <div class="card-content">
+    <h2>{{ event().name }}</h2>
+    <p class="card-description">{{ event().description }}</p>
+    <div class="card-badges">
+      <div class="badge-group">
+        <span class="badge-label">Origin book</span>
+        <span class="badge badge-purple">{{ event().originBook }}</span>
+      </div>
+      <div class="badge-group">
+        <span class="badge-label">Main location</span>
+        <span class="badge badge-teal">{{ event().mainLocationId }}</span>
+      </div>
+    </div>
+  </div>
+</app-card-ui>
