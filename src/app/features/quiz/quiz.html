@@ -1,2 +1,185 @@
-<br><br><br>
-<p>quiz works!</p>
+<div class="min-h-screen bg-[#0a0a0a] py-12 px-4 text-[#e0d7c6]">
+  <div class="mx-auto max-w-3xl rounded-lg border border-[#2a2a2a] bg-[#141414] shadow-2xl">
+    
+    <!-- Header -->
+    <div class="border-b border-[#2a2a2a] bg-[#1a1a1a] p-8 text-center">
+      <h2 class="font-serif text-4xl uppercase tracking-[0.2em] text-[#c19a6b]">
+        El Cuestionario del Destino
+      </h2>
+      <p class="mt-4 text-sm italic text-gray-400">
+        "El hombre de negro huyó a través del desierto, y el pistolero lo siguió."
+      </p>
+    </div>
+
+    <!-- LOADING -->
+    <div *ngIf="isLoading" class="text-center p-10">
+      <p class="text-gray-400">Consultando al Ka...</p>
+    </div>
+
+    <!-- CONTENIDO -->
+    <div *ngIf="!isLoading">
+
+      <!-- FORMULARIO -->
+      <form
+        *ngIf="!hasCompletedQuiz && !selectedCharacter"
+        (ngSubmit)="onSubmit(quizForm)"
+        #quizForm="ngForm"
+        class="p-10 space-y-12"
+      >
+
+        <!-- Pregunta 1 -->
+        <section class="space-y-4">
+          <h3 class="border-l-4 border-[#ef4444] pl-4 text-xl font-medium">
+            1. ¿Cómo enfrentas lo desconocido?
+          </h3>
+          <div class="ml-5 flex flex-col gap-3">
+            <label class="quiz-option">
+              <input type="radio" name="q1" value="a" ngModel required>
+              <span>Avanzo sin mirar atrás</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q1" value="b" ngModel required>
+              <span>Analizo cada detalle</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q1" value="c" ngModel required>
+              <span>Espero la señal correcta</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Pregunta 2 -->
+        <section class="space-y-4">
+          <h3 class="border-l-4 border-[#ef4444] pl-4 text-xl font-medium">
+            2. ¿Qué lugar te atrae más?
+          </h3>
+          <div class="ml-5 flex flex-col gap-3">
+            <label class="quiz-option">
+              <input type="radio" name="q2" value="a" ngModel required>
+              <span>Un pueblo silencioso</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q2" value="b" ngModel required>
+              <span>Un bosque oscuro</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q2" value="c" ngModel required>
+              <span>Un edificio abandonado</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Pregunta 3 -->
+        <section class="space-y-4">
+          <h3 class="border-l-4 border-[#ef4444] pl-4 text-xl font-medium">
+            3. ¿Qué te define mejor?
+          </h3>
+          <div class="ml-5 flex flex-col gap-3">
+            <label class="quiz-option">
+              <input type="radio" name="q3" value="a" ngModel required>
+              <span>Determinación</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q3" value="b" ngModel required>
+              <span>Inteligencia</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q3" value="c" ngModel required>
+              <span>Misterio</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Pregunta 4 -->
+        <section class="space-y-4">
+          <h3 class="border-l-4 border-[#ef4444] pl-4 text-xl font-medium">
+            4. ¿Qué valoras más?
+          </h3>
+          <div class="ml-5 flex flex-col gap-3">
+            <label class="quiz-option">
+              <input type="radio" name="q4" value="a" ngModel required>
+              <span>Lealtad</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q4" value="b" ngModel required>
+              <span>Poder</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q4" value="c" ngModel required>
+              <span>Conocimiento</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Pregunta 5 -->
+        <section class="space-y-4">
+          <h3 class="border-l-4 border-[#ef4444] pl-4 text-xl font-medium">
+            5. ¿Qué buscas al final del camino?
+          </h3>
+          <div class="ml-5 flex flex-col gap-3">
+            <label class="quiz-option">
+              <input type="radio" name="q5" value="a" ngModel required>
+              <span>Redención</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q5" value="b" ngModel required>
+              <span>Respuestas</span>
+            </label>
+            <label class="quiz-option">
+              <input type="radio" name="q5" value="c" ngModel required>
+              <span>Un nuevo comienzo</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Botón -->
+        <button
+          type="submit"
+          [disabled]="quizForm.invalid"
+          class="w-full rounded bg-[#ef4444] py-4 font-bold uppercase tracking-[0.2em] text-white transition-all hover:bg-[#b91c1c] active:scale-95 disabled:opacity-50"
+        >
+          Consultar al Ka
+        </button>
+
+      </form>
+
+      <!-- RESULTADO -->
+      <div *ngIf="selectedCharacter" class="p-10">
+        <div class="rounded-lg border border-[#2a2a2a] bg-[#141414] shadow-2xl overflow-hidden">
+
+          <!-- Imagen -->
+          <div class="h-64 w-full bg-black">
+            <img
+              [src]="selectedCharacter?.image"
+              alt="character"
+              class="h-full w-full object-cover opacity-80"
+            />
+          </div>
+
+          <!-- Contenido -->
+          <div class="p-8 text-center space-y-4">
+            <h2 class="text-3xl font-serif uppercase tracking-[0.2em] text-[#c19a6b]">
+              Tu destino está ligado a:
+            </h2>
+
+            <h3 class="text-2xl font-bold text-[#ef4444]">
+              {{ selectedCharacter?.name }}
+            </h3>
+
+            <p class="text-gray-400 italic">
+              {{ selectedCharacter?.description }}
+            </p>
+
+            <button
+                (click)="goHome()"
+                class="mt-4 rounded bg-[#ef4444] px-6 py-2 font-bold uppercase tracking-widest text-white transition hover:bg-[#b91c1c]"
+                >
+                Aceptar destino
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
