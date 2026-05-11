@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+@import "leaflet/dist/leaflet.css";
 
 @theme {
   --color-background: hsl(0 0% 6%);
@@ -46,5 +47,9 @@
 @layer utilities {
   .text-glow {
     text-shadow: var(--text-shadow-glow);
+  }
+  .map-container {
+    height: 600px;
+    @apply w-full rounded-xl border-2 border-stone-800 shadow-2xl;
   }
 }
