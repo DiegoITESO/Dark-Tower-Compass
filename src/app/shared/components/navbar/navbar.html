@@ -22,12 +22,13 @@
         routerLink="/events"
         >Eventos</a
       >
+      @if (authService.userSignal()) {
       <a
         class="font-display text-sm tracking-wide transition-colors hover:text-accent text-muted-foreground"
         routerLink="/quiz"
         >Cuestionario</a
       >
-
+      }
       @if (authService.userSignal()) {
         <a routerLink="/profile">
           <button
