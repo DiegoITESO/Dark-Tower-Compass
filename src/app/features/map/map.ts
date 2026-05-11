@@ -19,6 +19,7 @@ export class Map implements OnInit, OnDestroy {
     this.map = L.map('map', {
       crs: L.CRS.Simple,
       minZoom: -1,
+      zoomSnap: 0.1
     });
 
     const bounds: L.LatLngBoundsExpression = [
@@ -27,7 +28,9 @@ export class Map implements OnInit, OnDestroy {
     ];
     L.imageOverlay('derry-map.png', bounds).addTo(this.map);
 
-    this.map.fitBounds(bounds);
+    this.map.fitBounds(bounds, {
+      padding: [0, 0]
+    });
 
     this.addMarker(200, 350, 'The Barrens', 'Lugar de reunión del Club de los Perdedores.');
     this.addMarker(500, 600, 'Derry Public Library', 'Donde Ben Hanscom pasaba sus tardes.');

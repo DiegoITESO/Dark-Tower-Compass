@@ -30,6 +30,7 @@
 @layer base {
   body {
     @apply bg-background text-foreground antialiased;
+    overflow: hidden;
   }
   h1,
   h2,
@@ -49,7 +50,6 @@
     text-shadow: var(--text-shadow-glow);
   }
   .map-container {
-    height: 600px;
     @apply w-full rounded-xl border-2 border-stone-800 shadow-2xl;
   }
 }
