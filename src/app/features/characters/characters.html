@@ -1,9 +1,10 @@
 <br /><br /><br />
-@if (characters().length === 0) {
-  <p>Characters list is empty</p>
-}
-
+<h1 class="king-title-hero text-3xl text-glow font-bold mx-8 mt-4">Personajes</h1>
+<h3 class="mx-8 text-shadow-md text-foreground/80 font-serif italic leading-relaxed">Los habitantes del universo de King</h3>
 <div class="characters-list">
+  @if (characters().length === 0) {
+    <p>Characters list is empty</p>
+  }
   @for (character of characters(); track $index) {
     <app-characters-card [character]="character"></app-characters-card>
   }

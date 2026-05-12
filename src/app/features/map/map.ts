@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, signal } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, effect } from '@angular/core';
 import * as L from 'leaflet';
 
 @Component({
@@ -9,26 +9,37 @@ import * as L from 'leaflet';
 })
 export class Map implements OnInit, OnDestroy {
   selectedPlace = signal<string | null>(null);
+  showSewers = signal<boolean>(false);
   private map!: L.Map;
+  private imageLayer!: L.ImageOverlay;
 
   ngOnInit() {
     this.initMap();
   }
-
+  private readonly MAP_BOUNDS: L.LatLngBoundsExpression = [
+    [0, 0],
+    [1000, 1000],
+  ];
+  private readonly CITY_IMAGE = 'derry-map.png';
+  private readonly SEWER_IMAGE = 'derry-sewers-map.png';
+  constructor() {
+    effect(() => {
+      const isSewer = this.showSewers();
+      if (this.imageLayer) {
+        this.imageLayer.setUrl(isSewer ? this.SEWER_IMAGE : this.CITY_IMAGE);
+      }
+    });
+  }
   private initMap() {
     this.map = L.map('map', {
       crs: L.CRS.Simple,
       minZoom: -1,
-      zoomSnap: 0.1
+      zoomSnap: 0.1,
     });
 
-    const bounds: L.LatLngBoundsExpression = [
-      [0, 0],
-      [1000, 1000],
-    ];
-    L.imageOverlay('derry-map.png', bounds).addTo(this.map);
+    this.imageLayer = L.imageOverlay(this.CITY_IMAGE, this.MAP_BOUNDS).addTo(this.map);
 
-    this.map.fitBounds(bounds, {
+    this.map.fitBounds(this.MAP_BOUNDS, {
       padding: [0, 0]
     });
 
@@ -43,6 +54,9 @@ export class Map implements OnInit, OnDestroy {
       this.selectedPlace.set(title);
       console.log(`Explorando: ${title}`);
     });
+  }
+  toggleSewers() {
+    this.showSewers.update((v) => !v);
   }
   ngOnDestroy() {
     if (this.map) {
