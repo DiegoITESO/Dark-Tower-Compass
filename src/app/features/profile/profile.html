@@ -68,9 +68,40 @@
     Cerrar Sesión
   </button>
   <button
-    (click)="deleteAccount()"
+    (click)="openDeleteModal()"
     class="px-5 py-2 text-sm font-medium rounded-md border border-red-900/50 text-red-400 hover:bg-red-950/30 hover:border-red-600 transition-all cursor-pointer"
   >
     Eliminar Cuenta
   </button>
 </div>
+
+@if (showDeleteModal()) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-[fade-in-slide-up_500ms_ease-out]">
+
+    <!-- Modal Card -->
+    <div class="bg-background border border-crimson shadow-(--shadow-glow-active) rounded-lg p-8 max-w-md w-full mx-4">
+
+      <h2 class="text-2xl font-display text-crimson text-glow mb-4 text-center">Advertencia Final</h2>
+
+      <p class="font-body text-foreground/80 leading-relaxed text-center text-lg mb-8">
+        ¿Estás seguro de que deseas eliminar tu cuenta? Esta acción es irreversible y tu historia en Derry será borrada para siempre.
+      </p>
+
+      <div class="flex justify-center gap-4">
+        <button
+          (click)="cancelDelete()"
+          class="px-6 py-2 text-sm font-display tracking-wider rounded border border-stone-600 text-stone-300 hover:bg-stone-800 transition-colors cursor-pointer"
+        >
+          Cancelar
+        </button>
+        <button
+          (click)="confirmDelete()"
+          class="px-6 py-2 text-sm font-display tracking-wider rounded bg-crimson text-white hover:bg-crimson/80 shadow-(--shadow-glow-inactive) transition-all cursor-pointer"
+        >
+          Aceptar
+        </button>
+      </div>
+    </div>
+
+  </div>
+}
