@@ -1,5 +1,5 @@
 //------ Imports ------//
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth';
 import { User as UserService } from '../../../core/services/user';
@@ -22,7 +22,8 @@ export class LibraryId implements OnInit {
     favoriteBook: '',
     photoUrl: 'assets/profile.jpg',
   };
-
+  showToast = signal<boolean>(false);
+  private toastTimeout: any;
   isUploading = false;
 
   async ngOnInit() {
@@ -42,6 +43,22 @@ export class LibraryId implements OnInit {
     }
   }
 
+  triggerToast() {
+    console.log('trigger toast');
+    this.showToast.set(true);
+    this.cdr.detectChanges();
+
+    // Clear any existing timeout if the user saves multiple fields quickly
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+    }
+
+    this.toastTimeout = setTimeout(() => {
+      this.showToast.set(false);
+      this.cdr.detectChanges();
+    }, 3000);
+  }
+
   async saveProfile() {
     const currentUser = this.authService.userSignal();
     if (!currentUser) return;
@@ -52,6 +69,7 @@ export class LibraryId implements OnInit {
         birthDate: this.formData.dob,
         favoriteBook: this.formData.favoriteBook,
       });
+      this.triggerToast();
     } catch (error) {
       console.error('Failed to autosave.', error);
     }
@@ -80,6 +98,7 @@ export class LibraryId implements OnInit {
       // 3. Update the local variable so the UI changes instantly!
       this.formData.photoUrl = newPhotoUrl;
       this.cdr.detectChanges();
+      this.triggerToast();
     } catch (error) {
       console.error('Failed to update profile picture.', error);
       alert('Could not upload image. Please try again.');
