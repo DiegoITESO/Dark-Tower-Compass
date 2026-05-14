@@ -1,28 +1,56 @@
 <br /><br /><br />
-<h1 class="king-title-hero text-3xl text-glow font-bold mx-12 mt-4">Perfil</h1>
-<div
-  class="bg-[hsl(0_0%_10%)] border border-[hsl(0,0%,20%)] rounded-lg p-6 shadow-(--text-shadow-glow) transition-all duration-300 my-8 mx-12 animate-[fade-in-slide-up_500ms_ease-out] grid grid-cols-1 lg:grid-cols-2 gap-8"
->
-  <app-library-id></app-library-id>
+<h1 class="king-title-hero text-3xl text-glow font-bold max-w-6xl mx-auto mt-4">Perfil</h1>
+<div class="bg-[hsl(0_0%_10%)] border border-[hsl(0,0%,20%)] rounded-lg p-6 shadow-(--text-shadow-glow) transition-all duration-300 my-8 max-w-6xl mx-auto animate-[fade-in-slide-up_500ms_ease-out] grid grid-cols-1 lg:grid-cols-2 gap-2">
+  <app-library-id class="self-center"></app-library-id>
+
   <article>
-    @if (hasCompletedQuiz() === null) {
+    @if (isLoading()) {
       <div class="flex justify-center items-center h-48">
         <p class="text-muted-display animate-pulse">Cargando...</p>
       </div>
     }
-    @else if (hasCompletedQuiz() === true) {
-      <div class="p-8 border border-stone-700 rounded-lg bg-background">
-        <h2 class="text-2xl font-display text-white mb-4">Your Destiny is Written</h2>
-        <p class="text-slate-300">
-          You have already taken the initiation quiz. Check your Library ID for your assigned character.
-        </p>
-      </div>
+    @else if (hasCompletedQuiz()) {
+      <!-- 🔥 Safely unwrap the computed signal into a local variable -->
+      @if (selectedCharacter(); as character) {
+        <div class="py-2">
+          <div class="rounded-lg border border-[#2a2a2a] bg-[#141414] shadow-2xl overflow-hidden max-w-md mx-auto">
+            <div class="h-64 w-full bg-black relative">
+              <img
+                ngSrc="character.imageUrl"
+                [alt]="character.name"
+                fill
+                class="h-full w-full object-cover opacity-80"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#141414] to-transparent"></div>
+            </div>
+
+            <!-- Contenido -->
+            <div class="p-8 text-center space-y-4">
+              <h2 class="text-sm font-serif uppercase tracking-[0.2em] text-[#c19a6b]">
+                Tu destino está ligado a:
+              </h2>
+
+              <h3 class="text-3xl font-bold text-[#ef4444] drop-shadow-md">
+                {{ character.name }}
+              </h3>
+
+              <p class="text-gray-400 italic leading-relaxed">
+                "{{ character.description }}"
+              </p>
+
+              <div class="pt-4 border-t border-[#2a2a2a] text-xs text-gray-500 uppercase tracking-widest">
+                Origen: {{ character.originBook }}
+              </div>
+            </div>
+          </div>
+        </div>
+      }
     }
     @else {
       <div class="flex flex-col h-full p-8 border border-crimson/30 rounded-lg bg-background">
         <h2 class="text-2xl font-display text-crimson mb-4 text-glow">Haz el test</h2>
         <p class="text-slate-300 mb-6">
-          Para descubrir que personaje del macroverso eres, llena el test. No te sorprendas por el resultado, la maquina no se equivoca.
+          Para descubrir qué personaje del macroverso eres, llena el test. No te sorprendas por el resultado, la máquina no se equivoca.
         </p>
         <button class="mt-auto mx-auto bg-crimson text-white px-6 py-2 rounded font-display hover:bg-crimson/80 transition-colors" routerLink="/quiz">
           Realizar Cuestionario
