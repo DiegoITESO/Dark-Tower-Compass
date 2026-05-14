@@ -1,9 +1,8 @@
 /* TODO: standarize to tailwind classes */
 .credential {
-  width: 350px;
-  border: 2px solid #a52a2a;
+  width: 450px;
+  height: 300px;
   border-radius: 10px;
-  background-color: #f88423;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

@@ -29,8 +29,8 @@ export class Map implements OnInit, OnDestroy {
     [0, 0],
     [1000, 1000],
   ];
-  private readonly CITY_IMAGE = 'derry-map.png';
-  private readonly SEWER_IMAGE = 'derry-sewers-map.png';
+  private readonly CITY_IMAGE = 'maps/derry-map.png';
+  private readonly SEWER_IMAGE = 'maps/derry-sewers-map.png';
 
   constructor() {
     effect(() => {

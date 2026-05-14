@@ -14,7 +14,7 @@
   --animate-fade-in-slide-up: fade-in-slide-up 500ms ease-out forwards;
   --font-display: 'Cinzel', serif;
   --font-body: 'Crimson Text', serif;
-
+  --image-library: url('/public/assets/library-id.png');
   @keyframes fade-in-slide-up {
     0% {
       opacity: 0;
