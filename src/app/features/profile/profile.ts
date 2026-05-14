@@ -3,11 +3,12 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { LibraryId } from './library-id/library-id';
 import { User as UserService } from '../../core/services/user';
 import { AuthService } from '../../core/services/auth';
+import { RouterLink } from '@angular/router';
 
 //------ Component declaration ------//
 @Component({
   selector: 'app-profile',
-  imports: [LibraryId],
+  imports: [LibraryId, RouterLink],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
 })
