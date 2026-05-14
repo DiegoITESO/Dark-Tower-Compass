@@ -47,6 +47,7 @@ export class AuthService {
         favoriteBook: '',
         hasCompletedQuiz: false,
         assignedCharacterId: '',
+        photoUrl: ''
       };
       await setDoc(userDocRef, newUserProfile);
       return credential;
