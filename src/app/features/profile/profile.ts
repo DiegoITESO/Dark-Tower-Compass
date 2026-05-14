@@ -22,7 +22,7 @@ export class Profile implements OnInit {
 
   currentUser = signal<IUser | null>(null);
   isLoading = signal<boolean>(true); // Handles the "Cargando..." state cleanly
-
+  showDeleteModal = signal<boolean>(false);
   // 🔥 Derived state: Angular will automatically update this when currentUser changes
   hasCompletedQuiz = computed(() => this.currentUser()?.hasCompletedQuiz ?? false);
 
@@ -34,6 +34,38 @@ export class Profile implements OnInit {
 
     return characters.find((c) => c.id === user.assignedCharacterId) || null;
   });
+
+  async logout() {
+    await this.authService.logout();
+  }
+
+  openDeleteModal() {
+    this.showDeleteModal.set(true);
+  }
+
+  cancelDelete() {
+    this.showDeleteModal.set(false);
+  }
+
+  async confirmDelete() {
+    try {
+      await this.authService.deleteAccount();
+    } catch (error) {
+      console.error('Error deleting account:', error);
+    } finally {
+      this.showDeleteModal.set(false); // Close modal when done
+    }
+  }
+
+  async deleteAccount() {
+    if (confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción es irreversible.')) {
+      try {
+        await this.authService.deleteAccount();
+      } catch (error) {
+        console.error('Error deleting account:', error);
+      }
+    }
+  }
 
   async ngOnInit() {
     const user = this.authService.userSignal();
