@@ -67,6 +67,35 @@
     font-body text-foreground transition-[--transition-standard]
     focus:outline-none focus:border-crimson focus:bg-crimson/5 focus:shadow-[--shadow-glow-active];
   }
+
+  .derry-header-container {
+    @apply flex flex-col flex-1;
+  }
+
+  .derry-title {
+    @apply text-2xl font-display font-bold tracking-widest text-black py-0.5;
+  }
+
+  .derry-subtitle {
+    @apply font-display text-[0.75rem] tracking-wide uppercase text-slate-900 pb-1;
+  }
+
+  .derry-divider {
+    @apply border-t-2 border-black w-full;
+  }
+
+  .derry-label {
+    /* Uses slate-900 with a bit of transparency to look like muted dark text */
+    @apply font-display text-[0.75rem] tracking-wide text-slate-900/80;
+  }
+
+  .derry-input {
+    /* Uses slate-900 for text, slate-900/40 for placeholder, and darkens the focus ring */
+    @apply w-full border-none border-b border-stone-700 bg-transparent py-1
+    font-body text-slate-900 font-medium transition-[--transition-standard]
+    placeholder:text-slate-900/50
+    focus:outline-none focus:border-black focus:bg-black/5;
+  }
 }
 
 @utility bg-library-card {
