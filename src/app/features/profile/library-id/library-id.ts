@@ -36,7 +36,7 @@ export class LibraryId implements OnInit {
         this.formData.name = profile.displayName || '';
         this.formData.dob = profile.birthDate || '';
         this.formData.favoriteBook = profile.favoriteBook || '';
-        this.formData.photoUrl = profile.photoUrl || 'assets/foto.jpg';
+        this.formData.photoUrl = profile.photoUrl || 'assets/profile.jpg';
         this.cdr.detectChanges();
       }
     }
