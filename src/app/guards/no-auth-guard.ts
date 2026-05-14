@@ -9,13 +9,13 @@ export const noAuthGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   return toObservable(auth.userSignal).pipe(
-    filter(user => user !== undefined),
+    filter((user) => user !== undefined),
     take(1),
-    map(user => {
+    map((user) => {
       if (user) {
         return router.createUrlTree(['/home']);
       }
       return true;
-    })
+    }),
   );
 };

@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
   templateUrl: './quiz.html',
 })
 export class Quiz implements OnInit {
-  
   hasCompletedQuiz = false;
   isLoading = true;
   selectedCharacter: any = null;
@@ -29,45 +28,44 @@ export class Quiz implements OnInit {
   goHome() {
     this.router.navigate(['/home']);
   }
-  
+
   async ngOnInit() {
-  let user = this.auth.userSignal();
+    let user = this.auth.userSignal();
 
-  while (user === undefined) {
-    await new Promise(resolve => setTimeout(resolve, 50));
-    user = this.auth.userSignal();
-  }
+    while (user === undefined) {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      user = this.auth.userSignal();
+    }
 
-  if (!user) {
+    if (!user) {
+      this.isLoading = false;
+      this.cdr.detectChanges();
+      return;
+    }
+
+    const userRef = doc(this.firestore, `users/${user.uid}`);
+    const snapshot = await getDoc(userRef);
+
+    if (snapshot.exists()) {
+      const data: any = snapshot.data();
+
+      this.hasCompletedQuiz = data.hasCompletedQuiz;
+
+      if (data.hasCompletedQuiz) {
+        this.selectedCharacter = {
+          id: data.assignedCharacterId,
+          name: data.assignedCharacterName,
+          image: data.assignedCharacterImage,
+          description: data.assignedCharacterDescription,
+        };
+      }
+    }
+
     this.isLoading = false;
     this.cdr.detectChanges();
-    return;
   }
-
-  const userRef = doc(this.firestore, `users/${user.uid}`);
-  const snapshot = await getDoc(userRef);
-
-  if (snapshot.exists()) {
-    const data: any = snapshot.data();
-
-    this.hasCompletedQuiz = data.hasCompletedQuiz;
-
-    if (data.hasCompletedQuiz) {
-      this.selectedCharacter = {
-        id: data.assignedCharacterId,
-        name: data.assignedCharacterName,
-        image: data.assignedCharacterImage,
-        description: data.assignedCharacterDescription
-      };
-    }
-  }
-
-  this.isLoading = false;
-  this.cdr.detectChanges();
-}
 
   async onSubmit(form: NgForm) {
-
     if (this.hasCompletedQuiz) {
       console.warn('El usuario ya completó el quiz');
       return;
@@ -80,8 +78,7 @@ export class Quiz implements OnInit {
       return;
     }
 
-    const randomCharacter =
-      characters[Math.floor(Math.random() * characters.length)];
+    const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
 
     this.selectedCharacter = randomCharacter;
 
@@ -98,7 +95,7 @@ export class Quiz implements OnInit {
       assignedCharacterId: randomCharacter.id,
       assignedCharacterName: randomCharacter.name,
       assignedCharacterDescription: randomCharacter.description,
-      hasCompletedQuiz: true
+      hasCompletedQuiz: true,
     });
 
     this.hasCompletedQuiz = true;

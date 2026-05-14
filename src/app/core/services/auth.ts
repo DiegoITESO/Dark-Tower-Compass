@@ -10,6 +10,7 @@ import {
 } from '@angular/fire/auth';
 import { Firestore, doc, setDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
+import { User as IUser } from '../models/user.model';
 
 //------ Injectable decorator ------//
 @Injectable({
@@ -34,9 +35,17 @@ export class AuthService {
     try {
       const credential = await createUserWithEmailAndPassword(this.auth, email, pass);
       const user = credential.user;
-
       const userDocRef = doc(this.firestore, `users/${user.uid}`);
 
+      const newUserProfile: IUser = {
+        email: user.email,
+        role: 'user',
+        displayName: '',
+        birthDate: '',
+        favoriteBook: '',
+        hasCompletedQuiz: false,
+        assignedCharacterId: '',
+      };
       await setDoc(userDocRef, {
         assignedCharacterId: '',
         birthDate: '',

@@ -1,6 +1,5 @@
 <div class="min-h-screen bg-[#0a0a0a] py-12 px-4 text-[#e0d7c6]">
   <div class="mx-auto max-w-3xl rounded-lg border border-[#2a2a2a] bg-[#141414] shadow-2xl">
-
     <!-- Header -->
     <div class="border-b border-[#2a2a2a] bg-[#1a1a1a] p-8 text-center">
       <h2 class="font-serif text-4xl uppercase tracking-[0.2em] text-[#c19a6b]">
@@ -19,14 +18,9 @@
     } @else {
       <!-- CONTENIDO -->
       <div>
-
         @if (!hasCompletedQuiz && !selectedCharacter) {
           <!-- FORMULARIO -->
-          <form
-            (ngSubmit)="onSubmit(quizForm)"
-            #quizForm="ngForm"
-            class="p-10 space-y-12"
-          >
+          <form (ngSubmit)="onSubmit(quizForm)" #quizForm="ngForm" class="p-10 space-y-12">
             <!-- Pregunta 1 -->
             <section class="space-y-4">
               <h3 class="border-l-4 border-[#ef4444] pl-4 text-xl font-medium">
@@ -34,15 +28,15 @@
               </h3>
               <div class="ml-5 flex flex-col gap-3">
                 <label class="quiz-option">
-                  <input type="radio" name="q1" value="a" ngModel required>
+                  <input type="radio" name="q1" value="a" ngModel required />
                   <span>Avanzo sin mirar atrás</span>
                 </label>
                 <label class="quiz-option">
-                  <input type="radio" name="q1" value="b" ngModel required>
+                  <input type="radio" name="q1" value="b" ngModel required />
                   <span>Analizo cada detalle</span>
                 </label>
                 <label class="quiz-option">
-                  <input type="radio" name="q1" value="c" ngModel required>
+                  <input type="radio" name="q1" value="c" ngModel required />
                   <span>Espero la señal correcta</span>
                 </label>
               </div>
@@ -55,15 +49,15 @@
               </h3>
               <div class="ml-5 flex flex-col gap-3">
                 <label class="quiz-option">
-                  <input type="radio" name="q2" value="a" ngModel required>
+                  <input type="radio" name="q2" value="a" ngModel required />
                   <span>Un pueblo silencioso</span>
                 </label>
                 <label class="quiz-option">
-                  <input type="radio" name="q2" value="b" ngModel required>
+                  <input type="radio" name="q2" value="b" ngModel required />
                   <span>Un bosque oscuro</span>
                 </label>
                 <label class="quiz-option">
-                  <input type="radio" name="q2" value="c" ngModel required>
+                  <input type="radio" name="q2" value="c" ngModel required />
                   <span>Un edificio abandonado</span>
                 </label>
               </div>
@@ -76,15 +70,15 @@
               </h3>
               <div class="ml-5 flex flex-col gap-3">
                 <label class="quiz-option">
-                  <input type="radio" name="q3" value="a" ngModel required>
+                  <input type="radio" name="q3" value="a" ngModel required />
                   <span>Determinación</span>
                 </label>
                 <label class="quiz-option">
-                  <input type="radio" name="q3" value="b" ngModel required>
+                  <input type="radio" name="q3" value="b" ngModel required />
                   <span>Inteligencia</span>
                 </label>
                 <label class="quiz-option">
-                  <input type="radio" name="q3" value="c" ngModel required>
+                  <input type="radio" name="q3" value="c" ngModel required />
                   <span>Misterio</span>
                 </label>
               </div>
@@ -97,15 +91,15 @@
               </h3>
               <div class="ml-5 flex flex-col gap-3">
                 <label class="quiz-option">
-                  <input type="radio" name="q4" value="a" ngModel required>
+                  <input type="radio" name="q4" value="a" ngModel required />
                   <span>Lealtad</span>
                 </label>
                 <label class="quiz-option">
-                  <input type="radio" name="q4" value="b" ngModel required>
+                  <input type="radio" name="q4" value="b" ngModel required />
                   <span>Poder</span>
                 </label>
                 <label class="quiz-option">
-                  <input type="radio" name="q4" value="c" ngModel required>
+                  <input type="radio" name="q4" value="c" ngModel required />
                   <span>Conocimiento</span>
                 </label>
               </div>
@@ -118,15 +112,15 @@
               </h3>
               <div class="ml-5 flex flex-col gap-3">
                 <label class="quiz-option">
-                  <input type="radio" name="q5" value="a" ngModel required>
+                  <input type="radio" name="q5" value="a" ngModel required />
                   <span>Redención</span>
                 </label>
                 <label class="quiz-option">
-                  <input type="radio" name="q5" value="b" ngModel required>
+                  <input type="radio" name="q5" value="b" ngModel required />
                   <span>Respuestas</span>
                 </label>
                 <label class="quiz-option">
-                  <input type="radio" name="q5" value="c" ngModel required>
+                  <input type="radio" name="q5" value="c" ngModel required />
                   <span>Un nuevo comienzo</span>
                 </label>
               </div>
@@ -147,7 +141,6 @@
           <!-- RESULTADO -->
           <div class="p-10">
             <div class="rounded-lg border border-[#2a2a2a] bg-[#141414] shadow-2xl overflow-hidden">
-
               <!-- Imagen -->
               <div class="h-64 w-full bg-black">
                 <img
@@ -181,7 +174,6 @@
             </div>
           </div>
         }
-
       </div>
     }
   </div>

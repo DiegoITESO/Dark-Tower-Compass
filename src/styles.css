@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
-@import "leaflet/dist/leaflet.css";
+@import 'leaflet/dist/leaflet.css';
 
 @theme {
   --color-background: hsl(0 0% 6%);
@@ -14,7 +14,8 @@
   --animate-fade-in-slide-up: fade-in-slide-up 500ms ease-out forwards;
   --font-display: 'Cinzel', serif;
   --font-body: 'Crimson Text', serif;
-  --image-library: url('/public/assets/library-id.png');
+  --shadow-credential: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --transition-standard: all 0.2s ease-in-out;
   @keyframes fade-in-slide-up {
     0% {
       opacity: 0;
@@ -53,4 +54,21 @@
   .map-container {
     @apply w-full rounded-xl border-2 border-stone-800 shadow-2xl;
   }
+}
+
+@layer components {
+  .credential-field-group {
+    @apply flex flex-col mb-3;
+  }
+
+  .credential-input {
+    /* Using your theme's accent color and body font */
+    @apply w-full border-none border-b border-stone-700 bg-transparent py-1
+    font-body text-foreground transition-[--transition-standard]
+    focus:outline-none focus:border-crimson focus:bg-crimson/5 focus:shadow-[--shadow-glow-active];
+  }
+}
+
+@utility bg-library-card {
+  background-image: url('../public/assets/library-id.png');
 }

@@ -25,19 +25,19 @@ export const routes: Routes = [
   {
     path: 'auth',
     loadComponent: () => import('./features/auth/auth').then((m) => m.Auth),
-    canActivate: [noAuthGuard]
+    canActivate: [noAuthGuard],
   },
 
   //-------- Private Routes --------//
   {
     path: 'profile',
-    loadComponent: () => import('./features/library-id/library-id').then((m) => m.LibraryId),
-    canActivate: [authGuard]
+    loadComponent: () => import('./features/profile/profile').then((m) => m.Profile),
+    canActivate: [authGuard],
   },
   {
     path: 'quiz',
     loadComponent: () => import('./features/quiz/quiz').then((m) => m.Quiz),
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
 
   //-------- Default Redirects --------//

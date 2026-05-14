@@ -18,4 +18,3 @@ export class Place {
   ); // Turn observable into a signal
   constructor() {}
 }
-

@@ -1,6 +1,6 @@
 //------ Imports ------//
 import { Component, inject } from '@angular/core';
-import { Event as EventService } from '../../core/services/event'
+import { Event as EventService } from '../../core/services/event';
 import { CommonModule } from '@angular/common';
 import { EventsCard } from './events-card/events-card';
 
