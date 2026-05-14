@@ -35,6 +35,20 @@ export class Profile implements OnInit {
     return characters.find((c) => c.id === user.assignedCharacterId) || null;
   });
 
+  async logout() {
+    await this.authService.logout();
+  }
+
+  async deleteAccount() {
+    if (confirm('¿Estás seguro de que deseas eliminar tu cuenta? Esta acción es irreversible.')) {
+      try {
+        await this.authService.deleteAccount();
+      } catch (error) {
+        console.error('Error deleting account:', error);
+      }
+    }
+  }
+
   async ngOnInit() {
     const user = this.authService.userSignal();
 

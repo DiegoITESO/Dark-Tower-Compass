@@ -59,3 +59,18 @@
     }
   </article>
 </div>
+
+<div class="max-w-6xl mx-auto flex justify-end gap-4 mb-12">
+  <button
+    (click)="logout()"
+    class="px-5 py-2 text-sm font-medium rounded-md border border-[hsl(0,0%,30%)] text-slate-300 hover:bg-[hsl(0,0%,15%)] transition-colors cursor-pointer"
+  >
+    Cerrar Sesión
+  </button>
+  <button
+    (click)="deleteAccount()"
+    class="px-5 py-2 text-sm font-medium rounded-md border border-red-900/50 text-red-400 hover:bg-red-950/30 hover:border-red-600 transition-all cursor-pointer"
+  >
+    Eliminar Cuenta
+  </button>
+</div>
