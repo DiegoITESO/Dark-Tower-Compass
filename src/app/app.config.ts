@@ -1,5 +1,5 @@
 //------ Imports ------//
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
@@ -8,6 +8,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 import { routes } from './app.routes';
+import { provideServiceWorker } from '@angular/service-worker';
 
 //------ Configuration for Firebase ------//
 const firebaseConfig = {
@@ -33,5 +34,9 @@ export const appConfig: ApplicationConfig = {
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
     provideAnimationsAsync(),
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
 };
