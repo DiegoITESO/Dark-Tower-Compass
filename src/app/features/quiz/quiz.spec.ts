@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
-import { describe, beforeEach, it, expect, vi } from 'vitest';
+import { describe, beforeEach, afterEach, it, expect, vi } from 'vitest';
+import { of } from 'rxjs';
 
 import { Quiz } from './quiz';
-
 import { Character } from '../../core/services/character';
 import { AuthService } from '../../core/services/auth';
 
 import { Firestore } from '@angular/fire/firestore';
 import * as firestoreFns from '@angular/fire/firestore';
 
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 describe('Quiz Component', () => {
@@ -18,24 +18,12 @@ describe('Quiz Component', () => {
   let fixture: ComponentFixture<Quiz>;
 
   const mockCharacters = [
-    {
-      id: 'char-1',
-      name: 'Roland',
-      description: 'The Gunslinger',
-      image: 'roland.jpg',
-    },
-    {
-      id: 'char-2',
-      name: 'Jake',
-      description: 'The Boy',
-      image: 'jake.jpg',
-    },
+    { id: 'char-1', name: 'Roland', description: 'The Gunslinger', image: 'roland.jpg' },
+    { id: 'char-2', name: 'Jake', description: 'The Boy', image: 'jake.jpg' },
   ];
 
   const authServiceMock = {
-    userSignal: vi.fn(() => ({
-      uid: 'user-123',
-    })),
+    userSignal: vi.fn(() => ({ uid: 'user-123' })),
   };
 
   const characterServiceMock = {
@@ -48,14 +36,16 @@ describe('Quiz Component', () => {
     navigate: vi.fn(),
   };
 
+  const activatedRouteMock = {
+    queryParams: of({ debug: 'false' })
+  };
+
   beforeEach(async () => {
     vi.spyOn(firestoreFns, 'doc').mockReturnValue({} as any);
-
     vi.spyOn(firestoreFns, 'getDoc').mockResolvedValue({
       exists: () => false,
       data: () => ({}),
     } as any);
-
     vi.spyOn(firestoreFns, 'updateDoc').mockResolvedValue();
 
     await TestBed.configureTestingModule({
@@ -65,24 +55,32 @@ describe('Quiz Component', () => {
         { provide: AuthService, useValue: authServiceMock },
         { provide: Firestore, useValue: firestoreMock },
         { provide: Router, useValue: routerMock },
+        { provide: ActivatedRoute, useValue: activatedRouteMock },
       ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Quiz);
     component = fixture.componentInstance;
-
     await fixture.detectChanges();
     await fixture.whenStable();
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('hasCompletedQuiz inicia en false', () => {
-    const freshComponent = TestBed.createComponent(Quiz).componentInstance;
+  it('debe activar showReset si el queryParam debug es true', async () => {
+    (component as any).route.queryParams = of({ debug: 'true' });
+    (component as any).checkDebugMode();
+    expect(component.showReset).toBe(true);
+  });
 
-    expect(freshComponent.hasCompletedQuiz).toBe(false);
+  it('hasCompletedQuiz inicia en false', () => {
+    expect(component.hasCompletedQuiz).toBe(false);
   });
 
   it('isLoading debe existir', () => {
@@ -91,7 +89,6 @@ describe('Quiz Component', () => {
 
   it('goHome navega a home', () => {
     component.goHome();
-
     expect(routerMock.navigate).toHaveBeenCalledWith(['/home']);
   });
 
@@ -107,7 +104,7 @@ describe('Quiz Component', () => {
       }),
     } as any);
 
-    await component.ngOnInit();
+    await (component as any).loadUserData();
 
     expect(component.hasCompletedQuiz).toBe(true);
     expect(component.selectedCharacter.name).toBe('Roland');
@@ -115,7 +112,6 @@ describe('Quiz Component', () => {
 
   it('onSubmit asigna personaje aleatorio', async () => {
     const mockForm = {} as NgForm;
-
     await component.onSubmit(mockForm);
 
     expect(component.selectedCharacter).not.toBeNull();
@@ -124,7 +120,6 @@ describe('Quiz Component', () => {
 
   it('onSubmit llama updateDoc', async () => {
     const updateSpy = vi.spyOn(firestoreFns, 'updateDoc');
-
     const mockForm = {} as NgForm;
 
     await component.onSubmit(mockForm);
@@ -134,12 +129,10 @@ describe('Quiz Component', () => {
 
   it('no permite submit si ya completó quiz', async () => {
     component.hasCompletedQuiz = true;
-
-    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const updateSpy = vi.spyOn(firestoreFns, 'updateDoc');
 
     await component.onSubmit({} as NgForm);
-
-    expect(warnSpy).toHaveBeenCalled();
+    expect(updateSpy).not.toHaveBeenCalled();
   });
 
   it('renderiza sin errores', () => {
