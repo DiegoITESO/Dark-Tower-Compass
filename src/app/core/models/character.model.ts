@@ -4,5 +4,5 @@ export interface Character {
   description: string;
   mainLocationId: string;
   originBook: string;
-  imageUrl?: string;
+  photoUrl?: string;
 }

@@ -2,7 +2,11 @@
   <div class="card-accent"></div>
 
   <div class="card-image">
-    <span class="card-initial">{{ character().name.charAt(0).toUpperCase() }}</span>
+    @if (character().photoUrl) {
+      <img [ngSrc]="character().photoUrl!" [alt]="character().name" fill class="character-photo" />
+    } @else {
+      <span class="card-initial">{{ character().name.charAt(0).toUpperCase() }}</span>
+    }
   </div>
 
   <div class="card-content">
