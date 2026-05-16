@@ -1,7 +1,7 @@
 //------ Imports ------//
 import { Component, input } from '@angular/core';
 import { CardUi } from '../../../shared/components/card/card.ui';
-import { Event as IEvent } from '../../../core/models/event.model'
+import { Event as IEvent } from '../../../core/models/event.model';
 
 //------ Component declaration ------//
 @Component({

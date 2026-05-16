@@ -1,0 +1,107 @@
+<br /><br /><br />
+<h1 class="king-title-hero text-3xl text-glow font-bold max-w-6xl mx-auto mt-4">Perfil</h1>
+<div class="bg-[hsl(0_0%_10%)] border border-[hsl(0,0%,20%)] rounded-lg p-6 shadow-(--text-shadow-glow) transition-all duration-300 my-8 max-w-6xl mx-auto animate-[fade-in-slide-up_500ms_ease-out] grid grid-cols-1 lg:grid-cols-2 gap-2">
+  <app-library-id class="self-center"></app-library-id>
+
+  <article>
+    @if (isLoading()) {
+      <div class="flex justify-center items-center h-48">
+        <p class="text-muted-display animate-pulse">Cargando...</p>
+      </div>
+    }
+    @else if (hasCompletedQuiz()) {
+      <!-- 🔥 Safely unwrap the computed signal into a local variable -->
+      @if (selectedCharacter(); as character) {
+        <div class="py-2">
+          <div class="rounded-lg border border-[#2a2a2a] bg-[#141414] shadow-2xl overflow-hidden max-w-md mx-auto">
+            <div class="h-64 w-full bg-black relative">
+              <img
+                ngSrc="character.imageUrl"
+                [alt]="character.name"
+                fill
+                class="h-full w-full object-cover opacity-80"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#141414] to-transparent"></div>
+            </div>
+
+            <!-- Contenido -->
+            <div class="p-8 text-center space-y-4">
+              <h2 class="text-sm font-serif uppercase tracking-[0.2em] text-[#c19a6b]">
+                Tu destino está ligado a:
+              </h2>
+
+              <h3 class="text-3xl font-bold text-[#ef4444] drop-shadow-md">
+                {{ character.name }}
+              </h3>
+
+              <p class="text-gray-400 italic leading-relaxed">
+                "{{ character.description }}"
+              </p>
+
+              <div class="pt-4 border-t border-[#2a2a2a] text-xs text-gray-500 uppercase tracking-widest">
+                Origen: {{ character.originBook }}
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    }
+    @else {
+      <div class="flex flex-col h-full p-8 border border-crimson/30 rounded-lg bg-background">
+        <h2 class="text-2xl font-display text-crimson mb-4 text-glow">Haz el test</h2>
+        <p class="text-slate-300 mb-6">
+          Para descubrir qué personaje del macroverso eres, llena el test. No te sorprendas por el resultado, la máquina no se equivoca.
+        </p>
+        <button class="mt-auto mx-auto bg-crimson text-white px-6 py-2 rounded font-display hover:bg-crimson/80 transition-colors" routerLink="/quiz">
+          Realizar Cuestionario
+        </button>
+      </div>
+    }
+  </article>
+</div>
+
+<div class="max-w-6xl mx-auto flex justify-end gap-4 mb-12">
+  <button
+    (click)="logout()"
+    class="px-5 py-2 text-sm font-medium rounded-md border border-[hsl(0,0%,30%)] text-slate-300 hover:bg-[hsl(0,0%,15%)] transition-colors cursor-pointer"
+  >
+    Cerrar Sesión
+  </button>
+  <button
+    (click)="openDeleteModal()"
+    class="px-5 py-2 text-sm font-medium rounded-md border border-red-900/50 text-red-400 hover:bg-red-950/30 hover:border-red-600 transition-all cursor-pointer"
+  >
+    Eliminar Cuenta
+  </button>
+</div>
+
+@if (showDeleteModal()) {
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm animate-[fade-in-slide-up_500ms_ease-out]">
+
+    <!-- Modal Card -->
+    <div class="bg-background border border-crimson shadow-(--shadow-glow-active) rounded-lg p-8 max-w-md w-full mx-4">
+
+      <h2 class="text-2xl font-display text-crimson text-glow mb-4 text-center">Advertencia Final</h2>
+
+      <p class="font-body text-foreground/80 leading-relaxed text-center text-lg mb-8">
+        ¿Estás seguro de que deseas eliminar tu cuenta? Esta acción es irreversible y tu historia en Derry será borrada para siempre.
+      </p>
+
+      <div class="flex justify-center gap-4">
+        <button
+          (click)="cancelDelete()"
+          class="px-6 py-2 text-sm font-display tracking-wider rounded border border-stone-600 text-stone-300 hover:bg-stone-800 transition-colors cursor-pointer"
+        >
+          Cancelar
+        </button>
+        <button
+          (click)="confirmDelete()"
+          class="px-6 py-2 text-sm font-display tracking-wider rounded bg-crimson text-white hover:bg-crimson/80 shadow-(--shadow-glow-inactive) transition-all cursor-pointer"
+        >
+          Aceptar
+        </button>
+      </div>
+    </div>
+
+  </div>
+}

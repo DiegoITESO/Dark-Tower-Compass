@@ -1,9 +1,7 @@
 <div class="min-h-screen pt-24 pb-16 flex items-center justify-center bg-background-950">
   <div class="animate-fade-in-slide-up w-full max-w-md mx-4">
     <div class="bg-card border border-border rounded-lg p-8 border-glow shadow-2xl">
-      <h1
-        class="font-display text-3xl font-bold tracking-wider text-glow text-center mb-2 text-white"
-      >
+      <h1 class="font-display text-3xl font-bold tracking-wider text-glow text-center mb-2 text-white">
         {{ isLogin() ? 'Bienvenido' : 'Únete' }}
       </h1>
 
@@ -12,8 +10,10 @@
       </p>
 
       <form #authForm="ngForm" (submit)="handleSubmit()" class="space-y-4">
+
         <div>
           <input
+            data-cy="email-input"
             type="email"
             placeholder="Email"
             [(ngModel)]="email"
@@ -25,7 +25,7 @@
             [class.border-red-500]="emailInput.invalid && emailInput.touched"
           />
           @if (emailInput.invalid && emailInput.touched) {
-            <p class="text-red-500 text-xs mt-1 ml-1">
+            <p data-cy="email-error" class="text-red-500 text-xs mt-1 ml-1">
               Debe ingresar un correo electrónico válido.
             </p>
           }
@@ -33,6 +33,7 @@
 
         <div>
           <input
+            data-cy="password-input"
             type="password"
             placeholder="Contraseña"
             [(ngModel)]="password"
@@ -44,7 +45,7 @@
             [class.border-red-500]="passwordInput.invalid && passwordInput.touched"
           />
           @if (passwordInput.invalid && passwordInput.touched) {
-            <p class="text-red-500 text-xs mt-1 ml-1">
+            <p data-cy="password-error" class="text-red-500 text-xs mt-1 ml-1">
               La contraseña debe tener al menos 6 caracteres.
             </p>
           }
@@ -53,6 +54,7 @@
         @if (!isLogin()) {
           <div>
             <input
+              data-cy="confirm-password-input"
               type="password"
               placeholder="Confirmar Contraseña"
               [(ngModel)]="confirmPassword"
@@ -67,12 +69,15 @@
               "
             />
             @if (confirmPasswordInput.touched && password !== confirmPassword) {
-              <p class="text-red-500 text-xs mt-1 ml-1">Las contraseñas no coinciden.</p>
+              <p data-cy="confirm-error" class="text-red-500 text-xs mt-1 ml-1">
+                Las contraseñas no coinciden.
+              </p>
             }
           </div>
         }
 
         <button
+          data-cy="submit-button"
           type="submit"
           [disabled]="loading() || authForm.invalid"
           class="w-full bg-red-700 hover:bg-red-600 text-white font-display tracking-wide py-2 rounded transition-all disabled:opacity-50 disabled:cursor-not-allowed"
@@ -82,6 +87,7 @@
       </form>
 
       <button
+        data-cy="toggle-mode"
         (click)="toggleMode()"
         class="mt-6 w-full text-center text-sm text-slate-500 hover:text-red-400 transition-colors"
       >
@@ -89,51 +95,26 @@
       </button>
     </div>
   </div>
+
   @if (errorMessage()) {
     <div
       class="fixed bottom-4 right-4 z-50 flex items-center p-4 mb-4 w-full max-w-xs text-white bg-red-600 rounded-lg shadow-lg animate-fade-in-slide-up"
       role="alert"
     >
-      <div
-        class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 bg-red-700 rounded-lg"
-      >
-        <svg
-          class="w-5 h-5"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"
-          />
+      <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 bg-red-700 rounded-lg">
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
         </svg>
       </div>
-
-      <div class="ms-3 text-sm font-medium">
-        {{ errorMessage() }}
-      </div>
-
+      <div class="ms-3 text-sm font-medium">{{ errorMessage() }}</div>
       <button
         type="button"
         (click)="errorMessage.set('')"
         class="ms-auto -mx-1.5 -my-1.5 bg-red-600 text-white hover:bg-red-700 rounded-lg p-1.5 inline-flex items-center justify-center h-8 w-8 focus:ring-2 focus:ring-red-400"
       >
         <span class="sr-only">Cerrar</span>
-        <svg
-          class="w-3 h-3"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 14 14"
-        >
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-          />
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
         </svg>
       </button>
     </div>

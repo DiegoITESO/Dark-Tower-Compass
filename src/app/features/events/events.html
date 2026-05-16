@@ -1,9 +1,12 @@
 <br /><br /><br />
-@if (events().length === 0) {
-  <p>Event list is empty</p>
-}
-
+<h1 class="king-title-hero text-3xl text-glow font-bold mx-8 mt-4">Eventos</h1>
+<h3 class="mx-8 text-shadow-md text-foreground/80 font-serif italic leading-relaxed">
+  Los momentos que definieron el universo de King
+</h3>
 <div class="events-list">
+  @if (events().length === 0) {
+    <p>Event list is empty</p>
+  }
   @for (event of events(); track $index) {
     <app-events-card [event]="event"></app-events-card>
   }

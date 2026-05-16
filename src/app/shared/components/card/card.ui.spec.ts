@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { describe, beforeEach, it, expect } from 'vitest';
 
 import { CardUi } from './card.ui';
 
-describe('CardUi', () => {
+describe('CardUi Component', () => {
   let component: CardUi;
   let fixture: ComponentFixture<CardUi>;
 
@@ -13,10 +14,23 @@ describe('CardUi', () => {
 
     fixture = TestBed.createComponent(CardUi);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('renderiza sin errores', () => {
+    expect(fixture.nativeElement).toBeTruthy();
+  });
+
+  it('el componente existe correctamente', () => {
+    expect(component instanceof CardUi).toBe(true);
+  });
+
+  it('detectChanges no lanza errores', () => {
+    expect(() => fixture.detectChanges()).not.toThrow();
   });
 });

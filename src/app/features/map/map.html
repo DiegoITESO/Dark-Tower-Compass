@@ -1,12 +1,32 @@
-<p>map works!</p>
-<p>map works!</p>
-<p>map works!</p>
-<p>map works!</p>
-<p>map works!</p>
-<p>map works!</p>
-<p>map works!</p>
-<p>map works!</p>
-<p>map works!</p>
-<p>map works!</p>
-<p>map works!</p>
-<p>map works!</p>
+<br />
+<br />
+<br />
+<div class="mx-8 grid grid-cols-1 md:grid-cols-2">
+  <header>
+    <h1 class="king-title-hero text-3xl text-glow font-bold mx-8 mt-4">Mapa</h1>
+    <h3 class="mx-8 text-shadow-md text-foreground/80 font-serif italic leading-relaxed">
+      Descubre la realidad de Derry, Maine
+    </h3>
+  </header>
+  <section class="pr-10 flex items-center justify-end gap-3">
+    <button
+      (click)="toggleSewers()"
+      class="group relative inline-flex h-6 w-12 items-center rounded-full transition-all duration-300 focus:outline-none order-1"
+      [class.bg-crimson]="showSewers()"
+      [class.shadow-glow-active]="showSewers()"
+      [class.bg-stone-800]="!showSewers()"
+    >
+      <span
+        class="h-4 w-4 transform rounded-full bg-foreground transition-transform"
+        [class.translate-x-7]="showSewers()"
+        [class.translate-x-1]="!showSewers()"
+      ></span>
+    </button>
+    <span class="font-body text-glow order-2"> Mostrar alcantarillado </span>
+  </section>
+</div>
+<div class="p-8 md:p-12 lg:p-16 animate-fade-in-slide-up">
+  <div class="rounded-xl shadow-[0_0_30px_rgba(180,0,0,0.6)] ring-1 ring-crimson/30">
+    <div id="map" class="map-container h-[70vh] w-full shadow-none!"></div>
+  </div>
+</div>

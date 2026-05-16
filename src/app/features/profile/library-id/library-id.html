@@ -1,0 +1,104 @@
+<form
+  class="relative min-h-87.5 w-full p-8 rounded-lg shadow-[--shadow-glow-inactive] bg-library-card bg-size-[100%_100%] bg-no-repeat animate-[--animate-fade-in-slide-up]"
+>
+  <div class="flex items-center justify-between mb-8 pb-4">
+    <div class="flex items-center gap-4 w-full">
+      <div class="derry-header-container">
+        <hr class="derry-divider" />
+        <h1 class="derry-title">Derry Public Library</h1>
+        <p class="derry-subtitle">Official Member Identification</p>
+        <hr class="derry-divider" />
+      </div>
+    </div>
+  </div>
+
+  <div class="flex gap-8">
+    <!-- Photo Upload Section -->
+    <div class="relative group">
+      <label
+        for="photo-upload"
+        [class.opacity-50]="isUploading"
+        class="cursor-pointer block relative overflow-hidden border-2 border-stone-800 w-[130px] h-[160px] shadow-2xl"
+      >
+        <img
+          [ngSrc]="formData.photoUrl"
+          alt="Profile"
+          fill
+          class="w-full h-full object-cover sepia-[0.3] hover:sepia-0 transition-all duration-500"
+        />
+        <div
+          class="absolute inset-0 bg-background/80 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        >
+          <!-- Replaced text-accent with text-slate-900 -->
+          <span class="font-display text-[10px] text-slate-900 font-bold">
+            {{ isUploading ? 'Uploading...' : 'Replace' }}
+          </span>
+          @if (!isUploading) {
+            <span class="font-display text-[10px] text-slate-900 font-bold">Portrait</span>
+          }
+        </div>
+      </label>
+      <input
+        type="file"
+        id="photo-upload"
+        class="hidden"
+        accept="image/*"
+        (change)="onFileSelected($event)"
+      />
+    </div>
+
+    <!-- Input Fields -->
+    <div class="flex-1 space-y-5 relative z-10">
+      <div class="credential-field-group">
+        <!-- Swapped to derry-label -->
+        <label class="derry-label">Name of Bearer</label>
+        <!-- Swapped to derry-input -->
+        <input
+          type="text"
+          name="name"
+          placeholder="Escribe tu nombre aqui..."
+          class="derry-input"
+          [(ngModel)]="formData.name"
+          (blur)="saveProfile()"
+        />
+      </div>
+
+      <div class="credential-field-group">
+        <label class="derry-label">Date of Enrollment</label>
+        <input
+          type="date"
+          name="dob"
+          value="April 19, 1982"
+          class="derry-input"
+          [(ngModel)]="formData.dob"
+          (blur)="saveProfile()"
+        />
+      </div>
+
+      <div class="credential-field-group">
+        <label class="derry-label">Acclaimed Literature</label>
+        <input
+          type="text"
+          name="favorite_book"
+          placeholder="Cual es tu libro favorito?"
+          value="It (Eso)"
+          class="derry-input"
+          [(ngModel)]="formData.favoriteBook"
+          (blur)="saveProfile()"
+        />
+      </div>
+    </div>
+  </div>
+</form>
+
+@if (showToast()) {
+  <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[hsl(0_0%_10%)] border border-crimson/50 rounded-md px-6 py-4 shadow-(--shadow-glow-inactive) animate-[fade-in-slide-up_300ms_ease-out]">
+    <!-- Checkmark Icon -->
+    <svg class="w-5 h-5 text-crimson" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+    </svg>
+    <p class="font-display text-sm tracking-widest uppercase text-slate-300">
+      Registro Actualizado
+    </p>
+  </div>
+}

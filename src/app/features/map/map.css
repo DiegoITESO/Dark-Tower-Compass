@@ -1,0 +1,3 @@
+#map {
+  background: radial-gradient(circle, var(--color-background) 0%, #000000 100%);
+}
